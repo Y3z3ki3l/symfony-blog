@@ -53,8 +53,10 @@ class PostController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            // Calculating 
-
+            // Calculating the code for the URL
+            $utility = new \Helper\UtilityHelper();
+            $code = $utility->removeSpecialCharacter($form->get('title')->getData());
+            $post->setCode($code);
 
             $em->persist($post);
             $em->flush($post);

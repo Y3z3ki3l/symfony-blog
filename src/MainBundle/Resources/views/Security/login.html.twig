@@ -1,0 +1,50 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block header %}
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{path('main_secure_index')}}">Symfony Blog Admin</a>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <div class="jumbotron col-md-4">
+        <form class="form-signin" action="{{ path('login') }}" method="post">
+            <h2 class="text-center">Dashboard Area</h2>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="_username" class="form-control" placeholder="Username" required="" autofocus="">
+            
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="_password" class="form-control" placeholder="Password" required="">
+
+            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+    <div class="jumbotron col-md-offset-1 col-md-7">
+        <h3>Try it out!</h4>
+        <h4>You can connect to the admin section by using the credentials below:</p>
+        <ul>
+            <li>Admin user:
+                <ul>
+                    <li>Login - <strong>admin</strong></li>
+                    <li>Password - <strong>admin</strong></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+
