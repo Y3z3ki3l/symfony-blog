@@ -1,0 +1,45 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Comment</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ comment.id }}</td>
+                </tr>
+                <tr>
+                    <th>Comment</th>
+                    <td>{{ comment.comment }}</td>
+                </tr>
+                <tr>
+                    <th>Approved</th>
+                    <td>{% if comment.approved %}Yes{% else %}No{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>User</th>
+                    <td>{{ comment.user }}</td>
+                </tr>
+                <tr>
+                    <th>Createdat</th>
+                    <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Response</th>
+                    <td>{{ comment.response }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <a class="btn btn-default" href="{{ path('secure_comment_index') }}">Back to the list</a>
+        <a class="btn btn-primary" href="{{ path('secure_comment_edit', { 'id': comment.id }) }}">Edit</a>
+        {{ form_start(delete_form, {'attr': {'style': 'display:inline'}}) }}
+            <input class="btn btn-danger" type="submit" value="Delete comment">
+        {{ form_end(delete_form) }}
+    </div>
+
+{% endblock %}

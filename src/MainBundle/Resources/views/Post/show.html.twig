@@ -1,0 +1,52 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Post</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ post.id }}</td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ post.title }}</td>
+                </tr>
+                <tr>
+                    <th>Subtitle</th>
+                    <td>{{ post.subtitle }}</td>
+                </tr>
+                <tr>
+                    <th>Code</th>
+                    <td>{{ post.code }}</td>
+                </tr>
+                <tr>
+                    <th>Author</th>
+                    <td>{{ post.author }}</td>
+                </tr>
+                <tr>
+                    <th>Post</th>
+                    <td>{{ post.post }}</td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td>{{ post.image }}</td>
+                </tr>
+                <tr>
+                    <th>Createdat</th>
+                    <td>{% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <a class="btn btn-default" href="{{ path('secure_post_index') }}">Back to the list</a>
+        <a class="btn btn-primary" href="{{ path('secure_post_edit', { 'id': post.id }) }}">Edit</a>
+        {{ form_start(delete_form, {'attr': {'style': 'display:inline'}}) }}
+            <input class="btn btn-danger" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Edit Category</h1>
+
+    <div class="jumbotron">
+        {{ form_start(edit_form, {'attr': {'class': 'form-inline'}}) }}
+            <div class="form-group">
+                {{ form_widget(edit_form.name, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form) }}
+            </div>
+            <input class="btn btn-success" type="submit" value="Edit category" />
+        {{ form_end(edit_form) }}
+        <hr>
+        <div>
+            <a class="btn btn-default" href="{{ path('secure_category_index') }}">Back to the list</a>
+            {{ form_start(delete_form, {'attr': {'style': 'display:inline'}}) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+
+{% endblock %}

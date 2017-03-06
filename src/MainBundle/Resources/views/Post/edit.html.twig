@@ -1,0 +1,61 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Post edit</h1>
+
+    <div class="jumbotron">
+        {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+        <div class="form-group">
+            <label class="col-md-2 control-label">Title</label>
+            <div class="col-md-10">
+                {{ form_widget(edit_form.title, {'attr': {'class': 'form-control', 'placeholder': 'ex: How to build a new Symfony Blog'}}) }}
+            </div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Subtitle</label>
+            <div class="col-md-10">
+                {{ form_widget(edit_form.subtitle, {'attr': {'class': 'form-control', 'placeholder': 'ex: Learn the fastest way'}}) }}
+            </div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Author</label>
+            <div class="col-md-10">
+                {{ form_widget(edit_form.author, {'attr': {'class': 'form-control'}}) }}
+            </div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Post</label>
+            <div class="col-md-10">
+                {{ form_widget(edit_form.post, {'attr': {'class': 'form-control', 'type':'textarea', 'placeholder': 'Ex: How to build a new Symfony Blog', 'style': 'height:300px;'}}) }}
+            </div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Main Image URL</label>
+            <div class="col-md-10">
+                {{ form_widget(edit_form.image, {'attr': {'class': 'form-control'}}) }}
+            </div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Category</label>
+            <div class="col-md-10">
+                {{ form_widget(edit_form.category, {'attr': {'class': 'form-control', 'placeholder': 'Choose category'}}) }}
+            </div> 
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Code (clean URL)</label>
+            <div class="col-md-10">
+                {{ form_widget(edit_form.code, {'attr': {'class': 'form-control'}}) }}
+            </div> 
+        </div>
+        <input class="btn btn-success" type="submit" value="Edit post" />
+        {{ form_widget(edit_form) }}
+    </div>
+
+    <div>
+        <a class="btn btn-default" href="{{ path('secure_post_index') }}">Back to the list</a>
+        {{ form_start(delete_form, {'attr': {'style': 'display:inline'}}) }}
+            <input class="btn btn-danger" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+
+{% endblock %}

@@ -47,7 +47,9 @@
                 <!-- /.container -->
             </nav>
         {% endblock %}
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}
             {% javascripts  '@MainBundle/Resources/public/js/jquery.js'
                             '@MainBundle/Resources/public/js/bootstrap.min.js' %}

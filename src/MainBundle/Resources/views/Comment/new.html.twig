@@ -1,0 +1,48 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Comment creation</h1>
+
+    <div class="jumbotron">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            <div class="form-group">
+                <label class="col-md-2 control-label">Post</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.post, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">User</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.user, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Comment</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.comment, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Response</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.response, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Approved?</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.approved, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+
+            {{ form_widget(form) }}
+            <a class="btn btn-default" href="{{ path('secure_comment_index') }}">Back to the list</a>
+            <input class="btn btn-success" type="submit" value="Create comment" />
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

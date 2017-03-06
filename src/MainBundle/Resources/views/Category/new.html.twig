@@ -1,0 +1,15 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>New Category</h1>
+
+    <div class="jumbotron">
+        {{ form_start(form) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Type the name of the category'}}) }}
+            {{ form_widget(form) }}
+            <hr>
+            <a class="btn btn-default" href="{{ path('secure_category_index') }}">Back to the list</a>
+            <input class="btn btn-success" type="submit" value="Create" />
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

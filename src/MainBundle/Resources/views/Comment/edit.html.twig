@@ -1,0 +1,53 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Comment edit</h1>
+
+    <div class="jumbotron">
+        {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+            <div class="form-group">
+                <label class="col-md-2 control-label">Post</label>
+                <div class="col-md-10">
+                    {{ form_widget(edit_form.post, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">User</label>
+                <div class="col-md-10">
+                    {{ form_widget(edit_form.user, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Comment</label>
+                <div class="col-md-10">
+                    {{ form_widget(edit_form.comment, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Response</label>
+                <div class="col-md-10">
+                    {{ form_widget(edit_form.response, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Approved?</label>
+                <div class="col-md-10">
+                    {{ form_widget(edit_form.approved, {'attr': {'class': 'form-control'}}) }}
+                </div> 
+            </div>
+
+            {{ form_widget(edit_form) }}
+            <input class="btn btn-success" type="submit" value="Edit comment" />
+        {{ form_end(edit_form) }}
+    </div>
+
+    <div>
+        <a class="btn btn-default" href="{{ path('secure_comment_index') }}">Back to the list</a>
+        {{ form_start(delete_form, {'attr': {'style': 'display:inline'}}) }}
+            <input class="btn btn-danger" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+{% endblock %}

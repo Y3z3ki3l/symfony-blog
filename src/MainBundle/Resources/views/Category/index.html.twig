@@ -1,0 +1,39 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Categories</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td><a href="{{ path('secure_category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('secure_category_show', { 'id': category.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('secure_category_edit', { 'id': category.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="{{ path('secure_category_new') }}">Create a new category</a>
+    </div>
+
+{% endblock %}

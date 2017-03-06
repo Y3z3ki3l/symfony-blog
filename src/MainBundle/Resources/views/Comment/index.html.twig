@@ -1,0 +1,46 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Comments list</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Comment</th>
+                    <th>Approved</th>
+                    <th>User</th>
+                    <th>Created at</th>
+                    <th>Response</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for comment in comments %}
+                <tr>
+                    <td><a href="{{ path('secure_comment_show', { 'id': comment.id }) }}">{{ comment.id }}</a></td>
+                    <td>{{ comment.comment }}</td>
+                    <td>{% if comment.approved %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ comment.user }}</td>
+                    <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ comment.response }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('secure_comment_show', { 'id': comment.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('secure_comment_edit', { 'id': comment.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="{{ path('secure_comment_new') }}">Create a new comment</a>
+    </div>
+{% endblock %}

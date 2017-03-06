@@ -196,5 +196,28 @@ class Comment
     {
         return $this->response;
     }
-}
 
+    /**
+     * Set post
+     *
+     * @param \MainBundle\Entity\Post $post
+     *
+     * @return Comment
+     */
+    public function setPost(\MainBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \MainBundle\Entity\Post
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+}
