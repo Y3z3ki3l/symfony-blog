@@ -5,6 +5,7 @@ namespace MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use MainBundle\Entity\Comment;
@@ -60,8 +61,9 @@ class DefaultController extends Controller
             $em->persist($comment);
             $em->flush($comment);
 
-            $comment = new Comment();
-            $form = $this->getPostCommentForm($comment);
+            $this->addFlash('success', 'Your comment was sent!');
+            return $this->redirectToRoute('main_default_post', ['postCode' => $postCode]);
+
         }
 
         // Get all comments
@@ -87,6 +89,35 @@ class DefaultController extends Controller
         return [
             'categories' => $categories
         ];
+    }
+
+    /**
+     * Categories div
+     *
+     * @Template()
+     * @Route("/search")
+     */
+    public function searchAction(Request $request) {
+
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('main_default_search'))
+            ->add('search', TextType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $posts = $this->getDoctrine()->getRepository('MainBundle:Post')->createQueryBuilder('o')
+               ->where('o.title LIKE :title')
+               ->setParameter('title', "%{$data['search']}%")
+               ->getQuery()
+               ->getResult();
+
+            return $this->render('MainBundle:Default:index.html.twig', ['posts' => $posts]);
+        }
+
+        return ['form' => $form->createView()];
     }
 
     public function getPostCommentForm($comment){

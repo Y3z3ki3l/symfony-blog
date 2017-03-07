@@ -26,35 +26,39 @@
 
         <!-- Blog Post Feed -->
         <div class="col-md-8">
-            {% for post in posts %}
-            <div class="row post-container">
-                <div class="col-md-12 post">
-                    <a href="{{path('main_default_post', {'postCode' : post.code})}}">
-                        <img src="{{post.image}}" style="width:100%">
-                    </a> 
-
-                    <div class="post-description">
+            {% if posts|length > 0 %}
+                {% for post in posts %}
+                <div class="row post-container">
+                    <div class="col-md-12 post">
                         <a href="{{path('main_default_post', {'postCode' : post.code})}}">
-                            <h3>{{post.title}}</h3>
-                        </a>
-                        <span>
-                            by 
+                            <img src="{{post.image}}" style="width:100%">
+                        </a> 
+
+                        <div class="post-description">
+                            <a href="{{path('main_default_post', {'postCode' : post.code})}}">
+                                <h3>{{post.title}}</h3>
+                            </a>
                             <span>
-                                {{post.author}}
+                                by 
+                                <span>
+                                    {{post.author}}
+                                </span>
                             </span>
-                        </span>
-                        <span>
-                            on 
-                            <span>{{ post.createdAt|date("F jS \\a\\t g:ia") }}</span>
-                        </span>
-                        <span>with 
-                            <a href="{{path('main_default_post', {'postCode' : post.code})}}">0 comments</a>
-                        </span>
-                        <p>{{post.subtitle}}</p>
-                    </div>
-                </div><!-- Text size -->
-            </div>
-            {% endfor %}
+                            <span>
+                                on 
+                                <span>{{ post.createdAt|date("F jS \\a\\t g:ia") }}</span>
+                            </span>
+                            <span>with 
+                                <a href="{{path('main_default_post', {'postCode' : post.code})}}">0 comments</a>
+                            </span>
+                            <p>{{post.subtitle}}</p>
+                        </div>
+                    </div><!-- Text size -->
+                </div>
+                {% endfor %}
+            {% else %}
+                <h3>No results found</h3>
+            {% endif %}
         </div>
 
         <!-- Blog Sidebar Widgets Column -->
@@ -63,15 +67,7 @@
             <!-- Blog Search Well -->
             <div class="well">
                 <h4>Blog Search</h4>
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </span>
-                </div>
-                <!-- /.input-group -->
+                {{ render(  controller('MainBundle:Default:search')) }}
             </div>
 
             <!-- Blog Categories Well -->

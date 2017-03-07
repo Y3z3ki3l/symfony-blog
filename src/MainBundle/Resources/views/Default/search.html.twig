@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+<div class="input-group">
+    {{ form_widget(form.search, {'attr': {'class': 'form-control'}}) }}
+    <span class="input-group-btn">
+	        <button class="btn btn-default" type="submit">
+	            <span class="glyphicon glyphicon-search"></span>
+		    </button>
+    </span>
+</div>
+{{ form_widget(form) }}
+{{ form_end(form) }}
