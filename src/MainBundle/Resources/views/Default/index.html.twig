@@ -29,18 +29,18 @@
             {% for post in posts %}
             <div class="row post-container">
                 <div class="col-md-12 post">
-                    <a href="#">
+                    <a href="{{path('main_default_post', {'postCode' : post.code})}}">
                         <img src="{{post.image}}" style="width:100%">
                     </a> 
 
                     <div class="post-description">
-                        <a href="#">
+                        <a href="{{path('main_default_post', {'postCode' : post.code})}}">
                             <h3>{{post.title}}</h3>
                         </a>
                         <span>
                             by 
                             <span>
-                                <a href="#">{{post.author}}</a>
+                                {{post.author}}
                             </span>
                         </span>
                         <span>
@@ -48,7 +48,7 @@
                             <span>{{ post.createdAt|date("F jS \\a\\t g:ia") }}</span>
                         </span>
                         <span>with 
-                            <a href="#">0 comments</a>
+                            <a href="{{path('main_default_post', {'postCode' : post.code})}}">0 comments</a>
                         </span>
                         <p>{{post.subtitle}}</p>
                     </div>

@@ -24,6 +24,14 @@ class Comment
     /**
      * @var string
      *
+     * @ORM\Column(name="hash_id", type="string", length=32)
+     */
+    private $hashId;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="comment", type="text")
      */
     private $comment;
@@ -31,7 +39,7 @@ class Comment
     /**
      * @var bool
      *
-     * @ORM\Column(name="approved", type="boolean")
+     * @ORM\Column(name="approved", type="boolean", nullable=true)
      */
     private $approved;
 
@@ -52,7 +60,7 @@ class Comment
     /**
      * @var string
      *
-     * @ORM\Column(name="response", type="text")
+     * @ORM\Column(name="response", type="text", nullable=true)
      */
     private $response;
 
@@ -219,5 +227,29 @@ class Comment
     public function getPost()
     {
         return $this->post;
+    }
+
+    /**
+     * Set hashId
+     *
+     * @param string $hashId
+     *
+     * @return Comment
+     */
+    public function setHashId($hashId)
+    {
+        $this->hashId = $hashId;
+
+        return $this;
+    }
+
+    /**
+     * Get hashId
+     *
+     * @return string
+     */
+    public function getHashId()
+    {
+        return $this->hashId;
     }
 }

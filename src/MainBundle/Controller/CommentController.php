@@ -51,6 +51,8 @@ class CommentController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $comment->setHashId(md5(date('ymdHis')));
+
             $em->persist($comment);
             $em->flush($comment);
 
