@@ -44,10 +44,17 @@ class CategoryController extends Controller
     {
         $category = new Category();
         $form = $this->createForm('MainBundle\Form\CategoryType', $category);
+        $form->remove('code');
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            // Calculating the code for the URL
+            $utility = new \Helper\UtilityHelper();
+            $code = $utility->removeSpecialCharacter($form->get('name')->getData());
+            $category->setCode($code);
+
             $em->persist($category);
             $em->flush($category);
 

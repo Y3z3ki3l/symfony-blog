@@ -30,6 +30,13 @@ class Category
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=255)
+     */
+    private $code;
+
+    /**
      * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
      */
     private $posts;
@@ -109,5 +116,29 @@ class Category
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     *
+     * @return Category
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

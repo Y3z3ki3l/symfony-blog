@@ -9,6 +9,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Code</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -17,6 +18,7 @@
                 <tr>
                     <td><a href="{{ path('secure_category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
                     <td>{{ category.name }}</td>
+                    <td>{{ category.code }}</td>
                     <td>
                         <ul>
                             <li>

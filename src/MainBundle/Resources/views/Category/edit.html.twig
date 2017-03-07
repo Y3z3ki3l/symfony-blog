@@ -5,8 +5,13 @@
 
     <div class="jumbotron">
         {{ form_start(edit_form, {'attr': {'class': 'form-inline'}}) }}
-            <div class="form-group">
+            <div>
+                <label class="col-md-2">Name</label>
                 {{ form_widget(edit_form.name, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div>
+                <label class="col-md-2">Code (clean URL)</label>
+                {{ form_widget(edit_form.code, {'attr': {'class': 'form-control'}}) }}
                 {{ form_widget(edit_form) }}
             </div>
             <input class="btn btn-success" type="submit" value="Edit category" />
